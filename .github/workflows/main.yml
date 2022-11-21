@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@main
         
       - name: Setup Node, version ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
         
@@ -25,9 +25,9 @@ jobs:
           npm build --if-present
           npm test --if-present
       - name: Upload build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: production build
+          name: production
           path: ./build
 
   deploy:
@@ -35,9 +35,9 @@ jobs:
     needs: build
     steps:
       - name: Download build artifact from previos job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with: 
-          name: Production build
+          name: production
           path: ./build
 
       - name: Login to Azure
