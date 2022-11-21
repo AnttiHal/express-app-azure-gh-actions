@@ -4,7 +4,7 @@ on: [push]
 
 env: 
   AZURE_WEBAPP_NAME: anttihalexpressapp
-  AZURE_WEBAPP_PACKAGE_PATH: './build'
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
   NODE_VERSION: '14.x'
 
 jobs:
@@ -25,21 +25,6 @@ jobs:
           npm run build --if-present
           npm run test --if-present
         
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: production
-          path: ./build
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download build artifact from previos job
-        uses: actions/download-artifact@v3
-        with: 
-          name: production
-          path: ./build
 
       - name: Login to Azure
         uses: azure/login@v1
