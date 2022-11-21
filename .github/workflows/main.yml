@@ -2,10 +2,9 @@ name: Javascript CI
 
 on: [push]
 
-env:
-  AZURE_CREDENTIALS: 
-    AZURE_WEBAPP_NAME: anttihalexpressapp
-    NODE_VERSION: '14.x'
+env: 
+  AZURE_WEBAPP_NAME: anttihalexpressapp
+  NODE_VERSION: '14.x'
 
 jobs:
   build:
